@@ -1,0 +1,21 @@
+# Image
+FROM node:16.17-alpine
+
+# Set up app directory
+ARG WORK_DIR=/usr/src/app
+ARG PORT=3000
+
+WORKDIR $WORK_DIR
+
+# copy package files
+COPY package*.json ./
+
+# install modules
+RUN npm ci
+
+# run application
+EXPOSE $PORT 9229
+
+ENTRYPOINT ["npm"]
+
+CMD ["run", "start:dev"]

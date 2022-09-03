@@ -1,15 +1,15 @@
 version: "3.9"
 services:
   backend:
-    env_file: .env
+    env_file: ${ENV_FILE}
     build:
       context: ./
-      dockerfile: ./Dockerfile
+      dockerfile: ${DOCKERFILE}
       args:
         - WORK_DIR=${WORK_DIR}
-        - PORT=${BACKEND_PORT}
+        - PORT=${APPLICATION_PORT}
     ports:
-      - ${BACKEND_DOCKER_HOST_PORT}:${BACKEND_PORT}
+      - ${DOCKER_HOST_APPLICATION_PORT}:${APPLICATION_PORT}
     volumes:
       - './src:${WORK_DIR}/src'
       - './tsconfig.json:${WORK_DIR}/tsconfig.json'
